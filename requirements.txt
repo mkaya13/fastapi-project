@@ -1,0 +1,79 @@
+anyio==3.6.1
+asgiref==3.5.2
+attrs==21.4.0
+backcall @ file:///home/ktietz/src/ci/backcall_1611930011877/work
+base58==2.1.1
+bitarray==2.5.1
+certifi==2021.10.8
+charset-normalizer==2.0.12
+click==8.1.3
+colorama @ file:///tmp/build/80754af9/colorama_1607707115595/work
+cycler==0.11.0
+cytoolz==0.11.2
+debugpy @ file:///C:/ci/debugpy_1637091911212/work
+decorator @ file:///opt/conda/conda-bld/decorator_1643638310831/work
+entrypoints @ file:///C:/ci/entrypoints_1649926659561/work
+eth-abi==2.1.1
+eth-account==0.5.8
+eth-hash==0.3.2
+eth-keyfile==0.5.1
+eth-keys==0.3.4
+eth-rlp==0.2.1
+eth-typing==2.3.0
+eth-utils==1.10.0
+fastapi==0.78.0
+fonttools==4.33.3
+h11==0.13.0
+hexbytes==0.2.2
+idna==3.3
+importlib-metadata==4.11.4
+ipfshttpclient==0.6.1
+ipykernel @ file:///C:/ci/ipykernel_1647000985174/work/dist/ipykernel-6.9.1-py3-none-any.whl
+ipython @ file:///C:/ci/ipython_1643800131373/work
+jedi @ file:///C:/ci/jedi_1644297241925/work
+jsonschema==3.2.0
+jupyter-client @ file:///C:/ci/jupyter_client_1650534191587/work
+jupyter-core @ file:///C:/ci/jupyter_core_1646976467633/work
+kiwisolver==1.4.2
+lru-dict==1.1.7
+matplotlib==3.5.2
+matplotlib-inline @ file:///tmp/build/80754af9/matplotlib-inline_1628242447089/work
+multiaddr==0.0.9
+nest-asyncio @ file:///C:/ci/nest-asyncio_1649848126026/work
+netaddr==0.8.0
+numpy==1.21.6
+packaging==21.3
+pandas==1.3.5
+parsimonious==0.8.1
+parso @ file:///opt/conda/conda-bld/parso_1641458642106/work
+pickleshare @ file:///tmp/build/80754af9/pickleshare_1606932040724/work
+Pillow==9.1.1
+prompt-toolkit @ file:///tmp/build/80754af9/prompt-toolkit_1633440160888/work
+protobuf==3.20.1
+pycryptodome==3.14.1
+pydantic==1.9.1
+Pygments @ file:///opt/conda/conda-bld/pygments_1644249106324/work
+pyparsing==3.0.9
+pypiwin32==223
+pyrsistent==0.18.1
+python-dateutil==2.8.2
+pytz==2022.1
+pywin32==302
+pyzmq @ file:///C:/ci/pyzmq_1638435182681/work
+requests==2.28.0
+rlp==2.0.1
+six==1.16.0
+sniffio==1.2.0
+starlette==0.19.1
+toolz==0.11.2
+tornado @ file:///C:/ci/tornado_1606935947090/work
+traitlets @ file:///tmp/build/80754af9/traitlets_1636710298902/work
+typing-extensions==3.10.0.2
+urllib3==1.26.9
+uvicorn==0.17.6
+varint==1.0.2
+wcwidth @ file:///Users/ktietz/demo/mc3/conda-bld/wcwidth_1629357192024/work
+web3==5.12.2
+websockets==8.1
+wincertstore==0.2
+zipp==3.8.0
