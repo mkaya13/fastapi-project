@@ -62,46 +62,29 @@ def get_SFT_metadata():
 
 def get_all_petros_holders():
     
+    abi = json.loads('[{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"spender","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[],"name":"admin","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"spender","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"approve","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"burn","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"decimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"subtractedValue","type":"uint256"}],"name":"decreaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"addedValue","type":"uint256"}],"name":"increaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"mint","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transfer","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transferFrom","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"}]')
+    address = '0xD8AFa55703A442a127761E5CA897e060Cb3dcb2b'
 
-    total_petros_holders = []
+    contract = web3.eth.contract(address = address, abi = abi)
     
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0",
-           "Accept-Encoding": "gzip, deflate", "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-           "DNT": "1", "Connection": "close", "Upgrade-Insecure-Requests": "1"}
-
-    params = {
-    'a': '0xD8AFa55703A442a127761E5CA897e060Cb3dcb2b',
-    'p': '1',
-    }
-
-    response = requests.get('https://rinkeby.etherscan.io/token/generic-tokenholders2', params=params,headers=headers)
     
-    print(response.status_code)
+    latest = web3.eth.blockNumber
+    transferEvents = contract.events.Transfer.createFilter(fromBlock=0, toBlock="latest")
+    all_events = transferEvents.get_all_entries()
+    
+    
+    from_list = []
+    to_list = []
+    for i in all_events:
+        from_list.append(i.args["from"])
+        to_list.append(i.args["to"])
+    
+    holders_list = list(set(from_list).union(set(to_list)))
+    holders_list.remove("0x0000000000000000000000000000000000000000")
 
 
-    total_token_holder_count = int(re.findall(r"nA total of(.*?) token holders\\", str(response.content))[0].strip(' '))
-    petros_holders = re.findall(r"a=(.*?)\\", str(response.content))
 
-    total_petros_holders.append(petros_holders)
-
-    page_count = 1 + total_token_holder_count//50
-
-    if(page_count == 1):
-        pass
-    else:
-        for i in range(2,(page_count+1)):
-        
-            params['p'] = f'{i}'
-        
-            response = requests.get('https://rinkeby.etherscan.io/token/generic-tokenholders2', params=params, headers=headers)
-        
-            petros_holders = re.findall(r"a=(.*?)\\", str(response.content))
-
-            total_petros_holders.append(petros_holders)
-        
-    total_petros_holders = [i for ix in total_petros_holders for i in ix]
-
-    return total_petros_holders
+    return holders_list
 
 
 
