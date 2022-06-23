@@ -235,7 +235,20 @@ def get_user(user_address: str):
     t = {user_address: petros_amount}
 
     return t
-        
+       
+@app.get("/user-ETH/{user_address}")
+def get_user(user_address: str):
+
+    infura_url = "https://rinkeby.infura.io/v3/1ca5ad9c22fc4bc3b088ee54d9af02a4"  # Rinkeby BC
+
+    web3 = Web3(Web3.HTTPProvider(infura_url))
+
+    eth_amount = web3.eth.getBalance("0xF0335E130Aa4ab3e59e1a9162cfA135DC869B62E") # My MetaMask address
+    eth_amount =  eth_amount * 10**(-18)
+
+    t = {user_address, eth_amount}
+
+    return t
 
 
 
