@@ -188,9 +188,21 @@ def get_all_petros_holders_sorted_by_petros():
 
     petros_dict = {}
     
-    total_petros_holders = get_all_petros_holders()
+    latest = web3.eth.blockNumber
+    transferEvents = contract.events.Transfer.createFilter(fromBlock=0, toBlock="latest")
+    all_events = transferEvents.get_all_entries()
+    
+    
+    from_list = []
+    to_list = []
+    for i in all_events:
+        from_list.append(i.args["from"])
+        to_list.append(i.args["to"])
+    
+    holders_list = list(set(from_list).union(set(to_list)))
+    holders_list.remove("0x0000000000000000000000000000000000000000")
 
-    for i in total_petros_holders:
+    for i in holders_list:
 
         address_converted = Web3.toChecksumAddress(i)
         balance = contract.functions.balanceOf(address_converted).call()
