@@ -70,8 +70,12 @@ def get_all_petros_holders():
     'a': '0xD8AFa55703A442a127761E5CA897e060Cb3dcb2b',
     'p': '1',
     }
+    
+    headers = {
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36'    
+    }
 
-    response = scraper.get('https://rinkeby.etherscan.io/token/generic-tokenholders2', params=params)
+    response = scraper.get('https://rinkeby.etherscan.io/token/generic-tokenholders2', params=params, headers = headers)
     
     print(response.status_code)
 
@@ -108,13 +112,17 @@ def get_all_petros_holders():
     
     
     scraper = cloudscraper.create_scraper(browser={'platform': 'windows'})
+    
+    headers = {
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36'    
+    }
 
     params = {
     'a': '0xD8AFa55703A442a127761E5CA897e060Cb3dcb2b',
     'p': '1',
     }
 
-    response = scraper.get('https://rinkeby.etherscan.io/token/generic-tokenholders2', params=params)
+    response = scraper.get('https://rinkeby.etherscan.io/token/generic-tokenholders2', params=params, headers = headers)
 
     total_token_holder_count = int(re.findall(r"nA total of(.*?) token holders\\", str(response.content))[0].strip(' '))
 
@@ -124,8 +132,13 @@ def get_all_petros_holders():
 @app.get("/all-petros-holders-sorted-ETH")
 
 def all_petros_sorted_ETH():
-
+    
+ 
     total_petros_holders = []
+    
+    headers = {
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36'    
+    }
     
     scraper = cloudscraper.create_scraper(browser={'platform': 'windows'})
 
@@ -134,7 +147,7 @@ def all_petros_sorted_ETH():
         'p': '1',
     }
 
-    response = scraper.get('https://rinkeby.etherscan.io/token/generic-tokenholders2', params=params)
+    response = scraper.get('https://rinkeby.etherscan.io/token/generic-tokenholders2', params=params, headers = headers)
 
 
     total_token_holder_count = int(re.findall(r"nA total of(.*?) token holders\\", str(response.content))[0].strip(' '))
