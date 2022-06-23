@@ -94,23 +94,9 @@ def get_all_petros_holders():
 @app.get("/all-petros-holder-count")
 
 def get_all_petros_holders():
-    
-    
-    scraper = cloudscraper.create_scraper(browser={'platform': 'windows'})
-    
-    headers = {'user-agent': 'Windows 10/ Edge browser: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246'    
-                }
+    count_of_holders = len(get_all_petros_holders())
 
-    params = {
-    'a': '0xD8AFa55703A442a127761E5CA897e060Cb3dcb2b',
-    'p': '1',
-    }
-
-    response = scraper.get('https://rinkeby.etherscan.io/token/generic-tokenholders2', params=params, headers = headers)
-
-    total_token_holder_count = int(re.findall(r"nA total of(.*?) token holders\\", str(response.content))[0].strip(' '))
-
-    return total_token_holder_count
+    return count_of_holders
 
 
 @app.get("/all-petros-holders-sorted-ETH")
