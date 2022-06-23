@@ -19,6 +19,7 @@ from pydantic import BaseModel
 import json,requests
 from web3 import Web3
 import re
+import cloudscraper
 
 app = FastAPI()
 
@@ -59,8 +60,11 @@ def get_SFT_metadata():
 @app.get("/all-petros-holders")
 
 def get_all_petros_holders():
+    
 
     total_petros_holders = []
+    
+    scraper = cloudscraper.create_scraper(browser={'platform': 'windows'})
 
     headers = {
     'authority': 'rinkeby.etherscan.io',
@@ -83,7 +87,7 @@ def get_all_petros_holders():
     'p': '1',
     }
 
-    response = requests.get('https://rinkeby.etherscan.io/token/generic-tokenholders2', params=params, headers=headers)
+    response = scraper.get('https://rinkeby.etherscan.io/token/generic-tokenholders2', params=params, headers=headers)
 
 
     total_token_holder_count = int(re.findall(r"nA total of(.*?) token holders\\", str(response.content))[0].strip(' '))
@@ -115,6 +119,9 @@ def get_all_petros_holders():
 @app.get("/all-petros-holder-count")
 
 def get_all_petros_holders():
+    
+    
+    scraper = cloudscraper.create_scraper(browser={'platform': 'windows'})
 
     headers = {
     'authority': 'rinkeby.etherscan.io',
@@ -137,7 +144,7 @@ def get_all_petros_holders():
     'p': '1',
     }
 
-    response = requests.get('https://rinkeby.etherscan.io/token/generic-tokenholders2', params=params, headers=headers)
+    response = scraper.get('https://rinkeby.etherscan.io/token/generic-tokenholders2', params=params, headers=headers)
 
     total_token_holder_count = int(re.findall(r"nA total of(.*?) token holders\\", str(response.content))[0].strip(' '))
 
@@ -149,6 +156,8 @@ def get_all_petros_holders():
 def all_petros_sorted_ETH():
 
     total_petros_holders = []
+    
+    scraper = cloudscraper.create_scraper(browser={'platform': 'windows'})
 
     headers = {
         'authority': 'rinkeby.etherscan.io',
@@ -171,7 +180,7 @@ def all_petros_sorted_ETH():
         'p': '1',
     }
 
-    response = requests.get('https://rinkeby.etherscan.io/token/generic-tokenholders2', params=params, headers=headers)
+    response = scraper.get('https://rinkeby.etherscan.io/token/generic-tokenholders2', params=params, headers=headers)
 
 
     total_token_holder_count = int(re.findall(r"nA total of(.*?) token holders\\", str(response.content))[0].strip(' '))
