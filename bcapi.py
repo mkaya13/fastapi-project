@@ -88,6 +88,8 @@ def get_all_petros_holders():
     }
 
     response = scraper.get('https://rinkeby.etherscan.io/token/generic-tokenholders2', params=params, headers=headers)
+    
+    print(response.status_code)
 
 
     total_token_holder_count = int(re.findall(r"nA total of(.*?) token holders\\", str(response.content))[0].strip(' '))
