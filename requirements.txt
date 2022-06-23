@@ -56,3 +56,4 @@ web3==5.12.2
 websockets==8.1
 wincertstore==0.2
 zipp==3.8.0
+cloudscraper==1.2.60
