@@ -125,9 +125,9 @@ def get_all_petros_holders_count():
     return count_of_holders
 
 
-@app.get("/all-petros-holders-sorted-ETH")
+@app.get("/all-petros-holders-sorted-by-ETH")
 
-def get_all_petros_holders_sorted_ETH():
+def get_all_petros_holders_sorted_by_ETH():
     
  
     infura_url = "https://rinkeby.infura.io/v3/1ca5ad9c22fc4bc3b088ee54d9af02a4"  # Rinkeby BC
@@ -170,6 +170,29 @@ def get_all_petros_holders_sorted_ETH():
 #   holders_sorted_largest_to_smallest = list(h_sorting_dict.keys())
 
     return h_sorting_dict
+
+
+@app.get("/all-petros-holders-sorted-by-petros")
+def get_all_petros_holders_sorted_by_petros():
+    
+    
+    # Petros -- Url: https://rinkeby.etherscan.io/token/0xd8afa55703a442a127761e5ca897e060cb3dcb2b#readContract
+    abi = json.loads('[{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"spender","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[],"name":"admin","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"spender","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"approve","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"burn","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"decimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"subtractedValue","type":"uint256"}],"name":"decreaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"addedValue","type":"uint256"}],"name":"increaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"mint","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transfer","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transferFrom","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"}]')
+    address = '0xD8AFa55703A442a127761E5CA897e060Cb3dcb2b'
+
+    contract = web3.eth.contract(address = address, abi = abi)
+
+    petros_dict = {}
+
+    for i in total_petros_holders:
+
+        address_converted = Web3.toChecksumAddress(i)
+        balance = contract.functions.balanceOf(address_converted).call()
+        decimals = contract.functions.decimals().call()    
+  
+        petros_dict[i] = round(balance * 10**(-decimals),2)
+    
+    p_sorting_dict = {k: v for k, v in sorted(petros_dict.items(), key=lambda item: item[1], reverse = True)}
         
 
 
