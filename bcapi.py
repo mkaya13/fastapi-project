@@ -127,7 +127,7 @@ def get_all_petros_holders_count():
 
 @app.get("/all-petros-holders-sorted-ETH")
 
-def all_petros_sorted_ETH():
+def get_all_petros_holders_sorted_ETH():
     
  
     infura_url = "https://rinkeby.infura.io/v3/1ca5ad9c22fc4bc3b088ee54d9af02a4"  # Rinkeby BC
