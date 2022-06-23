@@ -211,6 +211,8 @@ def get_all_petros_holders_sorted_by_petros():
         petros_dict[i] = round(balance * 10**(-decimals),2)
     
     p_sorting_dict = {k: v for k, v in sorted(petros_dict.items(), key=lambda item: item[1], reverse = True)}
+    
+    return p_sorting_dict
         
 
 
