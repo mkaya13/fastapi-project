@@ -187,6 +187,8 @@ def get_all_petros_holders_sorted_by_petros():
     contract = web3.eth.contract(address = address, abi = abi)
 
     petros_dict = {}
+    
+    total_petros_holders = get_all_petros_holders()
 
     for i in total_petros_holders:
 
