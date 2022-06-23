@@ -40,7 +40,8 @@ def get_SFT_metadata():
 
     smart_contract_metadata = []
 
-    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
+    headers = {'user-agent': 'Windows 10/ Edge browser: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246'    
+                }
 
     for i in token_ids:
     
@@ -71,9 +72,8 @@ def get_all_petros_holders():
     'p': '1',
     }
     
-    headers = {
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36'    
-    }
+    headers = {'user-agent': 'Windows 10/ Edge browser: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246'    
+        }
 
     response = scraper.get('https://rinkeby.etherscan.io/token/generic-tokenholders2', params=params, headers = headers)
     
@@ -113,9 +113,8 @@ def get_all_petros_holders():
     
     scraper = cloudscraper.create_scraper(browser={'platform': 'windows'})
     
-    headers = {
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36'    
-    }
+    headers = {'user-agent': 'Windows 10/ Edge browser: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246'    
+                }
 
     params = {
     'a': '0xD8AFa55703A442a127761E5CA897e060Cb3dcb2b',
