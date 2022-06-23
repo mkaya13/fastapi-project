@@ -65,41 +65,16 @@ def get_all_petros_holders():
 
     total_petros_holders = []
     
-    cookies = {
-    '_ga': 'GA1.2.1213239796.1655469251',
-    '__stripe_mid': '3d0c3c11-0004-41a0-9788-a3fb137b3c1580ee8f',
-    '__cuid': '3d90549c05934e2e8732e2607763bc3e',
-    'amp_fef1e8': '13b014a6-aa5e-43df-865c-f8d69548cd62R...1g5oqtpsh.1g5oqu34l.2.1.3',
-    'etherscan_cookieconsent': 'True',
-    '_gid': 'GA1.2.903631541.1655845991',
-    'ASP.NET_SessionId': 'd1kzob1rxkubtyknhh3kipie',
-    '__cf_bm': 'RgmBd26XU2SWBIUyKpqnD5zS1o1MsqH5M9XpoGHqJLI-1655982564-0-AZ16SCcknNTfLmB4nSEXvrtZEeBBVES/EBea7eKSrj5y/josVqTIyLpgMbk10tovO9Z7LX4xyg7M8YCkIvzBpn5PArhZarjrpVVt9F1TrKp+8mRU+BSAaKgl24inl3sw4Q==',
-    }
-
-    headers = {
-    'authority': 'rinkeby.etherscan.io',
-    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-    'accept-language': 'en-US,en;q=0.9',
-    'cache-control': 'max-age=0',
-    # Requests sorts cookies= alphabetically
-    # 'cookie': '_ga=GA1.2.1213239796.1655469251; __stripe_mid=3d0c3c11-0004-41a0-9788-a3fb137b3c1580ee8f; __cuid=3d90549c05934e2e8732e2607763bc3e; amp_fef1e8=13b014a6-aa5e-43df-865c-f8d69548cd62R...1g5oqtpsh.1g5oqu34l.2.1.3; etherscan_cookieconsent=True; _gid=GA1.2.903631541.1655845991; ASP.NET_SessionId=d1kzob1rxkubtyknhh3kipie; __cf_bm=RgmBd26XU2SWBIUyKpqnD5zS1o1MsqH5M9XpoGHqJLI-1655982564-0-AZ16SCcknNTfLmB4nSEXvrtZEeBBVES/EBea7eKSrj5y/josVqTIyLpgMbk10tovO9Z7LX4xyg7M8YCkIvzBpn5PArhZarjrpVVt9F1TrKp+8mRU+BSAaKgl24inl3sw4Q==',
-    'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="102", "Google Chrome";v="102"',
-    'sec-ch-ua-mobile': '?0',
-    'sec-ch-ua-platform': '"Windows"',
-    'sec-fetch-dest': 'document',
-    'sec-fetch-mode': 'navigate',
-    'sec-fetch-site': 'none',
-    'sec-fetch-user': '?1',
-    'upgrade-insecure-requests': '1',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36',
-    }
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0",
+           "Accept-Encoding": "gzip, deflate", "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+           "DNT": "1", "Connection": "close", "Upgrade-Insecure-Requests": "1"}
 
     params = {
     'a': '0xD8AFa55703A442a127761E5CA897e060Cb3dcb2b',
     'p': '1',
     }
 
-    response = requests.get('https://rinkeby.etherscan.io/token/generic-tokenholders2', params=params, cookies=cookies, headers=headers)
+    response = requests.get('https://rinkeby.etherscan.io/token/generic-tokenholders2', params=params,headers=headers)
     
     print(response.status_code)
 
