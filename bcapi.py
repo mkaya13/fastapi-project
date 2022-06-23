@@ -251,7 +251,7 @@ def get_user(user_address: str):
     return t
 
 
-@app.get("/all-sft-holders")
+@app.get("/all-SFT-holders")
 def get_all_sft_holders():
     infura_url = "https://rinkeby.infura.io/v3/1ca5ad9c22fc4bc3b088ee54d9af02a4"  # Rinkeby BC
 
@@ -298,7 +298,7 @@ def get_all_sft_holders():
     return all_users_token_dict
 
 
-@app.get("/user-NFT/{user_address}")
+@app.get("/user-SFT/{user_address}")
 def get_user(user_address: str):
     
     
