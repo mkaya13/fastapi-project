@@ -153,7 +153,7 @@ def all_petros_sorted_ETH():
     holders_list = list(set(from_list).union(set(to_list)))
     holders_list.remove("0x0000000000000000000000000000000000000000")
     
-    
+    h_eth_list = []
 
     for i in holders_list:
         h_add =  web3.toChecksumAddress(i)
