@@ -246,7 +246,7 @@ def get_user(user_address: str):
     eth_amount = web3.eth.getBalance("0xF0335E130Aa4ab3e59e1a9162cfA135DC869B62E") # My MetaMask address
     eth_amount =  eth_amount * 10**(-18)
 
-    t = {user_address, eth_amount}
+    t = {user_address: eth_amount}
 
     return t
 
