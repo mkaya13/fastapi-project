@@ -137,9 +137,9 @@ def get_all_petros_holders_count():
 
     return count_of_holders
 
-@app.get("/all-SFT-holder-count")
+@app.get("/all-SFT-count")
 
-def get_all_SFT_holders_count():
+def get_all_SFT_count():
     
     infura_url = "https://rinkeby.infura.io/v3/1ca5ad9c22fc4bc3b088ee54d9af02a4"  # Rinkeby BC
     web3 = Web3(Web3.HTTPProvider(infura_url))
@@ -150,10 +150,10 @@ def get_all_SFT_holders_count():
     sft_contract = web3.eth.contract(address = sft_address, abi = sft_abi)
 
 
-    count_of_sft_holders = sft_contract.functions.countSFT().call()
+    count_of_sft = sft_contract.functions.countSFT().call()
     
 
-    return count_of_sft_holders
+    return count_of_sft
 
 
 
