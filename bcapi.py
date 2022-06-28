@@ -483,7 +483,7 @@ def transaction_dashboard():
     total_sft_count = sft_contract.functions.countSFT().call()
     
     
-    return count_of_petros_holders,last_3_ptr_data, total_sft_count
+    return count_of_petros_holders, total_sft_count, last_3_ptr_data
 
 
     
