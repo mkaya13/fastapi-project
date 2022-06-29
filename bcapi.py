@@ -483,7 +483,49 @@ def transaction_dashboard():
     total_sft_count = sft_contract.functions.countSFT().call()
     
     
-    return count_of_petros_holders, total_sft_count, last_3_ptr_data
+    
+    # Last 3 SFT Transactions OpenSea
+
+
+    latest = web3.eth.blockNumber
+    transferEvents = sft_contract.events.TransferSingle.createFilter(fromBlock=0, toBlock="latest")
+
+
+    all_events = transferEvents.get_all_entries()
+
+    last_3_sft_events = all_events[-3:]
+
+    last_3_sft_data = []
+    last_3_sft_dict = {}
+    for i in range(0,len(last_3_sft_events)):
+        last_3_sft_dict["sft_id"] = last_3_sft_events[i]["args"]["id"]
+        last_3_sft_dict["sft_from"] = last_3_sft_events[i]["args"]["from"]
+        last_3_sft_dict["sft_to"] = last_3_sft_events[i]["args"]["to"]
+    
+        decimal_req = req_data.SFT_decimal[req_data.SFT_id == last_3_sft_events[i]["args"]["id"]].values[0]
+    
+        print(decimal_req)
+    
+    
+        print(last_3_sft_events[i]["args"]["value"])
+    
+    
+        last_3_sft_dict["sft_quantity"] = last_3_sft_events[i]["args"]["value"]  / (10**(decimal_req))
+        last_3_sft_dict["sft_event"] =  last_3_sft_events[i]["event"]
+        last_3_sft_dict["sft_transaction_hash"] = last_3_sft_events[i]["transactionHash"].hex()
+    
+    #   last_3_sft_dict["sft_name"] = combine_sft_id_name_list
+    
+        last_3_sft_data.append(last_3_sft_dict)
+    
+        last_3_sft_dict = {}
+    
+    
+    return count_of_petros_holders, total_sft_count, last_3_ptr_data,last_3_sft_data
+
+
+
+
 
 
     
