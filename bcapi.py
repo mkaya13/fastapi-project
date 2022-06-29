@@ -588,7 +588,7 @@ def transaction_dashboard():
     json_data['SFT_last_3_transactions']= last_3_sft_data
     
     
-    return count_of_petros_holders, count_of_SFT_holders, last_3_ptr_data,last_3_sft_data
+    return json_data
 
 
 
