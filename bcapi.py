@@ -586,13 +586,13 @@ def transaction_dashboard():
     ptr_trans_dict = {}
     counter = 0
     for i in last_3_ptr_data:
-        ptr_trans_dict[counter] = i
+        ptr_trans_dict[str(counter)] = i
         counter+=1
     
     sft_trans_dict = {}
     counter = 0
     for i in last_3_sft_data:
-        sft_trans_dict[counter] = i
+        sft_trans_dict[str(counter)] = i
         counter+=1
         
     
