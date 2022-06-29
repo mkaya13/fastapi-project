@@ -582,10 +582,25 @@ def transaction_dashboard():
     
     json_data = json.loads(json_data)
     
+    
+    ptr_trans_dict = {}
+    counter = 0
+    for i in last_3_ptr_data:
+        ptr_trans_dict[counter] = i
+        counter+=1
+    
+    sft_trans_dict = {}
+    counter = 0
+    for i in last_3_sft_data:
+        sft_trans_dict[counter] = i
+        counter+=1
+        
+    
+    
     json_data['petros_holder_count']= count_of_petros_holders
     json_data['sft_holder_count']= count_of_SFT_holders
-    json_data['petros_last_3_transactions']= last_3_ptr_data
-    json_data['SFT_last_3_transactions']= last_3_sft_data
+    json_data['petros_last_3_transactions']= ptr_trans_dict
+    json_data['SFT_last_3_transactions']= sft_trans_dict
     
     
     return json_data
