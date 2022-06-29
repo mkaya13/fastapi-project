@@ -577,6 +577,13 @@ def transaction_dashboard():
         last_3_sft_data.append(last_3_sft_dict)
     
         last_3_sft_dict = {}
+        
+    json_data = '{"petros_holder_count": "a", "sft_holder_count": "a" , "petros_last_3_transactions": "a" , "SFT_last_3_transactions": "a"}'
+    
+    json_data['petros_holder_count']= count_of_petros_holders
+    json_data['sft_holder_count']= count_of_SFT_holders
+    json_data['petros_last_3_transactions']= last_3_ptr_data
+    json_data['SFT_last_3_transactions']= last_3_sft_data
     
     
     return count_of_petros_holders, count_of_SFT_holders, last_3_ptr_data,last_3_sft_data
