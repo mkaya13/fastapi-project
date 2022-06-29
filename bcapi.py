@@ -21,6 +21,7 @@ from web3 import Web3
 import re
 import cloudscraper
 from fastapi.middleware.cors import CORSMiddleware
+import pandas as pd
 
 app = FastAPI()
 
