@@ -483,6 +483,58 @@ def transaction_dashboard():
     total_sft_count = sft_contract.functions.countSFT().call()
     
     
+    # Get the Decimals inside Metadata
+
+    token_ids = [i for i in range(1, sft_contract.functions.countSFT().call() + 1)]
+
+    smart_contract_metadata = []
+
+    headers = {'user-agent': 'Windows 10/ Edge browser: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246'    
+            }
+
+    combine_sft_id_name_list = []
+    combine_sft_id_name_dict = {}
+
+    for i in token_ids:
+
+        try:
+            url = sft_contract.functions.uri(i).call()
+
+            r = requests.get(url, headers = headers)
+
+            smart_contract_metadata.append(r.json())
+        
+            combine_sft_id_name_dict[i] = r.json()["name"] 
+        
+            combine_sft_id_name_list.append(combine_sft_id_name_dict)
+        
+            combine_sft_id_name_dict = {}
+        
+       
+
+        except:
+            pass
+    
+    
+    x = pd.DataFrame(combine_sft_id_name_list)
+
+    sft_name_list = []
+    for i in range(0,len(x)):
+        sft_name_list.append(x.iloc[i,i])    
+    
+    scm_name = []
+    scm_decimal = []
+    for i in smart_contract_metadata:
+        scm_name.append(i["name"])
+        try:
+            scm_decimal.append(i["decimals"])
+        except:
+            scm_decimal.append(0)
+        
+    req_data = pd.DataFrame(data = {"SFT_id": x.columns.tolist(), "SFT_name": sft_name_list, "SFT_decimal":scm_decimal})
+
+    
+    
     
     # Last 3 SFT Transactions OpenSea
 
