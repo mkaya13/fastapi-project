@@ -583,17 +583,25 @@ def transaction_dashboard():
     json_data = json.loads(json_data)
     
     
+    numbers = ["one","two","three"]
+    
+    
     ptr_trans_dict = {}
     counter = 0
     for i in last_3_ptr_data:
         ptr_trans_dict[str(counter)] = i
         counter+=1
+        
+    ptr_trans_dict=dict(zip(numbers,list(ptr_trans_dict.values()))) 
     
     sft_trans_dict = {}
     counter = 0
     for i in last_3_sft_data:
         sft_trans_dict[str(counter)] = i
         counter+=1
+        
+    sft_trans_dict=dict(zip(numbers,list(sft_trans_dict.values()))) 
+
         
     
     
